@@ -24,7 +24,7 @@ export default {
 
   methods: {
     addCard() {
-      if (this.input.isValid == true /*  && this.input.nrInput !== "" */) {
+      if (this.input.isValid == true && this.input.nrInput !== "") {
         if (localStorage.getItem("cards")) {
           this.myCards = JSON.parse(localStorage.getItem("cards"));
           this.myCards.push(this.input);

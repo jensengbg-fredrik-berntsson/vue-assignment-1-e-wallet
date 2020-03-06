@@ -113,9 +113,8 @@ export default {
 
     validateNumber() {
       if (
-        this.checkNumber(this.input.nrInput) ==
-        true /* ||
-        this.input.nrInput === "" */
+        this.checkNumber(this.input.nrInput) == true ||
+        this.input.nrInput === ""
       ) {
         this.cardInput.validNumber = false;
       } else {
