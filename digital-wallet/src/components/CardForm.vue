@@ -1,10 +1,16 @@
 <template>
   <section @input="cardInfo">
+    <label for="vendor" class="wideLabel">VENDOR</label>
+
+    <select name id="vendor" v-model="input.vendorInput" @input="validateVendor">
+      <option value="bitcoin">BITCOIN INC</option>
+      <option value="ninja">NINJA BANK</option>
+      <option value="blockchain">BLOCK CHAIN INC</option>
+      <option value="evil">EVIL CORP</option>
+    </select>
     <label for="cardNrInput" class="wideLabel">
       CARD NUMBER
-      <span v-if="cardInput.validNumber" class="error"
-        >Valid: Only numbers (16)</span
-      >
+      <span v-if="cardInput.validNumber" class="error">Valid: Only numbers (16)</span>
     </label>
 
     <input
@@ -18,9 +24,7 @@
 
     <label for="CardNameInput" class="wideLabel">
       CARDHOLDER NAME
-      <span v-if="cardInput.validName" class="error"
-        >Valid: Firstname Lastname</span
-      >
+      <span v-if="cardInput.validName" class="error">Valid: Firstname Lastname</span>
     </label>
 
     <input
@@ -63,19 +67,6 @@
         />
       </div>
     </section>
-    <label for="vendor" class="wideLabel">VENDOR</label>
-
-    <select
-      name
-      id="vendor"
-      v-model="input.vendorInput"
-      @input="validateVendor"
-    >
-      <option value="bitcoin">BITCOIN INC</option>
-      <option value="ninja">NINJA BANK</option>
-      <option value="blockchain">BLOCK CHAIN INC</option>
-      <option value="evil">EVIL CORP</option>
-    </select>
   </section>
 </template>
 
@@ -105,10 +96,12 @@ export default {
       let isTrue = Object.keys(this.cardInput).every(
         k => this.cardInput[k] == false
       );
+
       if (isTrue == true) {
+        console.log("här");
         let isEmpty = Object.keys(this.input).some(k => this.input[k] === "");
         if (isEmpty == false) {
-          console.log(isEmpty);
+          console.log("här nu");
           this.input.isValid = true;
         }
       }

@@ -59,14 +59,14 @@ export default {
   watch: {
     cards() {
       this.myCards = JSON.parse(localStorage.getItem("cards"));
-    },
+    } /* ,
     activeCard() {
       this.activeCard = JSON.parse(localStorage.getItem("activeCard"));
-    }
+    } */
   }
 };
 </script>
-<style >
+<style>
 .Btn {
   width: 24rem;
   height: 5rem;
