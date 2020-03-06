@@ -1,7 +1,7 @@
 <template>
   <section @input="cardInfo">
     <label for="vendor" class="wideLabel">VENDOR</label>
-
+    <!-- Lagt vandor först för att få valideringen att fungera, om den ligger sist funkar inte funktionen cardInfo() som den ska -->
     <select name id="vendor" v-model="input.vendorInput" @input="validateVendor">
       <option value="bitcoin">BITCOIN INC</option>
       <option value="ninja">NINJA BANK</option>
@@ -74,6 +74,7 @@
 export default {
   data: () => {
     return {
+      //det du skriver in här skickas upp till addCard och sedan ner till Card för att det du skriver uppdateras i realtid till kortet
       input: {
         nrInput: "",
         nameInput: "",
@@ -82,6 +83,7 @@ export default {
         vendorInput: "",
         isValid: false
       },
+      //för att välja att visa valideringestexten, om false visas den inte.
       cardInput: {
         validNumber: false,
         validName: false,
@@ -93,15 +95,15 @@ export default {
   },
   methods: {
     cardInfo() {
+      //letar igenom cardInput för att se om alla är true, om false gå vidare till isEmpty
       let isTrue = Object.keys(this.cardInput).every(
         k => this.cardInput[k] == false
       );
 
       if (isTrue == true) {
-        console.log("här");
+        //Letar igenom input för att se om något fält är tomt, om inte är isValid true som på AddCard gör att input sparas.
         let isEmpty = Object.keys(this.input).some(k => this.input[k] === "");
         if (isEmpty == false) {
-          console.log("här nu");
           this.input.isValid = true;
         }
       }
@@ -111,8 +113,9 @@ export default {
 
     validateNumber() {
       if (
-        this.checkNumber(this.input.nrInput) == true ||
-        this.input.nrInput === ""
+        this.checkNumber(this.input.nrInput) ==
+        true /* ||
+        this.input.nrInput === "" */
       ) {
         this.cardInput.validNumber = false;
       } else {

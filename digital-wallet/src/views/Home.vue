@@ -9,7 +9,6 @@
 </template>
 
 <script>
-// @ is an alias to /src
 import Top from "../components/Top";
 import Card from "../components/Card";
 import CardStack from "../components/CardStack";
@@ -45,28 +44,26 @@ export default {
     changeCard(index) {
       this.input = this.myCards[index];
       localStorage.setItem("activeCard", JSON.stringify(this.input));
-      console.log(this.myCards[index]);
     },
     deleteCard() {
-      console.log(this.input);
-      this.myCards = JSON.parse(localStorage.getItem("cards"));
       let index = this.myCards.findIndex(x => x.nrInput == this.input.nrInput);
-      console.log(index + " here");
       this.myCards.splice(index, 1);
+
       localStorage.setItem("cards", JSON.stringify(this.myCards));
+
+      this.input = {};
+      localStorage.setItem("activeCard", JSON.stringify(this.input));
     }
   },
   watch: {
     cards() {
       this.myCards = JSON.parse(localStorage.getItem("cards"));
-    } /* ,
-    activeCard() {
-      this.activeCard = JSON.parse(localStorage.getItem("activeCard"));
-    } */
+    }
   }
 };
 </script>
 <style>
+/* använder samma styleing på alla 3 knappar, 2 här och 1 på AddCard */
 .Btn {
   width: 24rem;
   height: 5rem;
